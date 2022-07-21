@@ -7,10 +7,20 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<!-- ng-app : 앵귤러JS 애플리케이션이다.
-		  -->
-	<div ng-app="" ng-init="str='HelloWorld'">
-		<h1>{{str}}</h1>
+	<!-- ng-app : 앵귤러JS 애플리케이션이다.-->
+	<div ng-app="" ng-init="data1=100; data2=200; data3='문자열1'; data4='문자열2'; obj={a1:200, a2:200}; arr=[10, 20, 30]">
+		<p>5 + 5 : {{5 + 5}} </p>
+		<p>data1 : {{data1}}</p>
+		<p>data1 + data2 : {{data1 + data2}}</p>
+		<p>문자열 : {{'문자열'}}</p>
+		<p>data3 : {{data3}}</p>
+		<p>data3 + data4 : {{data3 + data4}}</p>
+		<p>obj.a1 : {{obj.a1}}</p>
+		<p>obj.a2 : {{obj.a2}}</p>
+		<p>arr[0] : {{arr[0]}}</p>
+		<p>arr[1] : {{arr[1]}}</p>
+		<p>arr[2] : {{arr[2]}}</p>
+		
 	</div> 
 </body>
 </html>
