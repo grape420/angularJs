@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+<title>Insert title here</title>
+<script>
+	let app = angular.module("test_app", [])
+	
+	app.directive("directive1", function() {
+		return {
+			restrict : "E",
+			template : "사용자 정의 지시자1"
+		}
+	})
+	app.directive("directive2", function() {
+		return {
+			restrict : "A",
+			template : "사용자 정의 지시자2"
+		}
+	})
+	app.directive("directive3", function() {
+		return {
+			restrict : "C",
+			template : "사용자 정의 지시자3"
+		}
+	})
+	app.directive("directive4", function() {
+		return {
+			restrict : "M",
+			replace : true,
+			template : "<p>사용자 정의 지시자4 : 사용자 정의 지시자4 </p>"
+		}
+	})
+	
+	app.directive("directive5", function() {
+		return {
+			restrict : "EA",
+			template : "사용자 정의 지시자5"
+		}
+	})
+</script>
+</head>
+<body>
+	<!-- ng-app : 앵귤러JS 애플리케이션이다.-->
+	<!-- 
+		ng-app : AngularJs 애플리케이션에 대한 초기 설정
+		ng-init : AngularJs 애플리케이션에서 사용할 데이터 설정
+		ng-model : HTML에서의 입력 요소들을 컨트롤하기 위한 지시자
+		ng-repeat : 지정된 태그를 배열에 들어 있는 요소 만큼 반복하여 출력
+	 --> 
+	<div ng-app="test_app" ng-init="data1=100; data2='문자열'; data3='red'; data4=[100, 200, 300]">
+		<p>data1 : {{data1}}</p>
+		<p>data2 : {{data2}}</p>
+		<p>data3 : {{data3}}</p>
+		<p style="color : {{data3}}">문자열</p>
+		<p ng-repeat="a1 in data4">{{a1}}</p>
+		
+		<p>directive 함수를 통해 지시자를 만들 수 있으며 새롭게 만든 지시자를 이용해 원하는 곳에 HTML 코드를 삽입할 수 있다.</p>
+		<p>사용자 정의 지시자1 : <directive1/></p>
+		<p>사용자 정의 지시자2 : <span directive2></span></p>
+		<p>사용자 정의 지시자3 : <span class="directive3"></span></p>
+		<!-- directive: directive4 -->
+		<p>사용자 정의 지시자 5 : <directive5></directive5></p>
+		<p>사용자 정의 지시자 6 : <span directive5></span></p>
+		
+		<p>
+			restrict 속성을 이용해 적용할 요소를 선택할 수 있다.
+			E : 태그
+			A : 속성
+			C : class 속성
+			M : 주석
+			생략 시 EA로 설정된다.
+		</p>
+		
+	</div> 
+</body>
+</html>
