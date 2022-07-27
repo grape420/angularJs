@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+<title>Insert title here</title>
+<script>
+	let app = angular.module("test_app", [])
+	
+	app.controller("controller1", function($scope) {
+		// scope 객체는 Controller를 적용한 태그 내에서 사용할 변수나 함수를 저장해 놓을 수 있는 객체이다.
+		$scope.data1 = 100;
+		$scope.data2 = 200;
+		$scope.changeValue = function() {
+			$scope.data1 = 1000;
+			$scope.data2 = 2000;
+		}
+	})
+</script>
+</head>
+<body>
+	<!-- ng-app : 앵귤러JS 애플리케이션이다.-->
+	<!-- Controller은 Angular JS에서 데이터를 통제하기 위해 제공되는 개념이다. -->
+	<div ng-app="test_app" ng-controller="controller1">
+		data1 : {{data1}}<br>
+		data2 : {{data2}}<br>
+		<hr>
+		<!-- input 태그의 기본값 설정 -->
+		<input type="text" ng-model="data1"><br>			
+		<input type="text" ng-model="data2"><br>
+		
+		<button type="button" ng-click="changeValue()">값 변경</button>
+	</div> 
+</body>
+</html>

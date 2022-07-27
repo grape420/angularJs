@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+<title>Insert title here</title>
+<script>
+	let app = angular.module("test_app", [])
+	
+	app.run(function($rootScope) {
+		// rootScope : 전역변수
+		$rootScope.data1 = 100
+		$rootScope.data2 = 200
+	})
+	
+	// rootScope보다 controller의 scope가 우선이다.
+	app.controller("controller1", function($scope){
+		$scope.data1 = 1000
+		$scope.data2 = 2000
+	})
+	app.controller("controller2", function($scope){
+		$scope.data2 = 3000
+	})
+</script>
+</head>
+<body>
+	<!-- ng-app : 앵귤러JS 애플리케이션이다.-->
+	<div ng-app="test_app" ng-controller="controller1">
+		<!-- controller1의 scope 변수 -->
+		<p>data1 : {{data1}}</p>
+		<p>data2 : {{data2}}</p>
+		<div ng-controller="controller2">
+			<!-- controller2의 scope 변수 -->
+			<p>data2 : {{data2}}</p>
+		</div>
+	</div> 
+</body>
+</html>
