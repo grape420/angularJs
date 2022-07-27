@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-i18n/1.8.2/angular-locale_ko-kr.min.js"></script>
+<title>Insert title here</title>
+<script>
+	/*
+		필터 : 출력하는 데이터에 대해 필터를 적용해 데이터를 가공할 수 있다.
+		uppercase : 모든 글자를 대문자로 변환한다.
+		lowercase : 모든 글자를 소문자로 변환한다.
+		orderBy : 정렬 기준을 설정한다.
+		currency : 숫자를 통화를 적용한다.
+		date : 날짜 데이터의 출력 포맷을 설정할 수 있다.
+		filter : 지정된 문자열을 가지고 있는 태그만 표시한다.
+		json : javascript 객체를 json 문법으로 출력한다.
+		limitTo : 지정된 숫자만큼 표시한다.
+		number : 지정된 숫자에 3 자리마다 콤마를 찍어준다.
+	*/
+	
+	let app = angular.module("test_app", [])
+	
+	app.run(function($rootScope) {
+		// rootScope : 전역변수
+		$rootScope.data1 = "abCDef"
+		$rootScope.data2 = [
+			{a1 : "홍길동", a2 : 150},
+			{a1 : "안중근", a2 : 1140},
+			{a1 : "이순신", a2 : 60}
+		]
+		$rootScope.data3 = 12345678.123456
+		$rootScope.data4 = new Date()
+		$rootScope.data5 = ['aaaa', 'aabb', 'aacc', 'bbcc', 'bbdd', 'cccc']
+	})
+</script>
+</head>
+<body>
+	<!-- ng-app : 앵귤러JS 애플리케이션이다.-->
+	<div ng-app="test_app">
+		<p>upper case : {{data1 | uppercase}}</p>
+		<p>lower case : {{data1 | lowercase}}</p>
+		<hr/>
+		<p ng-repeat="obj in data2">a1 : {{obj.a1}}, a2 : {{obj.a2}}</p>
+		<hr/>
+		<p ng-repeat="obj in data2 | orderBy : 'a1'">a1 : {{obj.a1}}, a2 : {{obj.a2}}</p>
+		<hr/>
+		<p ng-repeat="obj in data2 | orderBy : 'a2'">a1 : {{obj.a1}}, a2 : {{obj.a2}}</p>
+		<hr/>
+		<p>currency : {{data3 | currency}}</p>
+		<hr/>
+		<p>date : {{data4 | date:'yyyy년 MM월 dd일 HH시 mm분 ss초 EEEE'}}</p>
+		<hr/>
+		<p ng-repeat="str in data5 | filter : 'aa'">{{str}}</p>
+		<hr/>
+		<input type="text" ng-model="keyword"/><br/>
+		<p ng-repeat="str in data5 | filter : keyword">{{str}}</p>
+		<hr/>
+		<!-- 인덱스 1번에서부터 3개 -->
+		<p ng-repeat="str in data5 | limitTo : 3 : 1">{{str}}</p>
+		<hr/>
+		<p>{{data1 | limitTo : 2 : 1}}</p>
+		<hr/>
+		<p>{{data3 | number : 2}}</p>
+	</div>
+</body>
+</html>
