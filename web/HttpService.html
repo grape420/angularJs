@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+<title>Insert title here</title>
+<script>
+	let app = angular.module("test_app", []);
+
+	app.controller("controller1", function($scope, $http) {
+		// Get 방식
+		$scope.ajaxGet = function() {
+			let http = $http.get("data.html");
+
+			http.then(function(response) {
+				$scope.result = response.data;
+			})
+		}
+		// Post 방식
+		$scope.ajaxPost = function() {
+			let http = $http.post("data.html");
+
+			http.then(function(response) {
+				$scope.result = response.data;
+			})
+		}
+		// Get 또는 Post 방식
+		$scope.ajaxBasic = function() {
+			let http = $http({
+				method : "post",
+				url : "data.html"
+			})
+
+			http.then(function(response) {
+				$scope.result = response.data
+			})
+		}
+		// JSON 방식
+		$scope.ajaxJson = function() {
+			let http = $http.get("data2.html");
+
+			http.then(function(response) {
+				$scope.json_data = response.data;
+			})
+		}
+
+
+	})
+</script>
+</head>
+<body>
+
+	<div ng-app="test_app" ng-controller="controller1">
+		<button type="button" ng-click="ajaxGet()">Ajax Get</button>
+		<button type="button" ng-click="ajaxPost()">Ajax Post</button>
+		<button type="button" ng-click="ajaxBasic()">Ajax Basic</button>
+		<button type="button" ng-click="ajaxJson()">Ajax Json</button>
+		<p>{{result}}</p>
+		<div>
+			<p ng-repeat="item in json_data">a1 : {{item.a1}}, a2 : {{item.a2}}</p>
+		</div>
+	</div>
+</body>
+</html>
