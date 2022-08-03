@@ -40,6 +40,8 @@
 		$scope.ajaxJson = function() {
 			let http = $http.get("data2.html");
 
+
+
 			http.then(function(response) {
 				$scope.json_data = response.data;
 			})
