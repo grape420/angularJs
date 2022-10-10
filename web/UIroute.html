@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/1.0.30/angular-ui-router.js"></script>
+<title>Insert title here</title>
+<script>
+	let app = angular.module("test_app", ["ui.router"])
+	
+	app.config(function($stateProvider, $urlRouterProvider){
+		
+		// 첫 페이지 무조건 main
+		$urlRouterProvider.otherwise("mainnnnnnnnn")
+		
+		let mainState = {
+				name : "hi",
+				url : "/mainnnnnnnnn",
+				template : "<h1>Main</h1>"
+		}
+		
+		let page1State = {
+				name : "page1",
+				url : "/page1",
+				templateUrl : "page1.html",
+				controller : "page1Controller"
+		}
+		
+		$stateProvider.state(mainState)
+		$stateProvider.state(page1State)
+	})
+	
+	app.controller("page1Controller", function($scope){
+		$scope.data1 = "문자열1",
+		$scope.data2 = "문자열2"
+	})
+</script>
+</head>
+<body>
+	<!-- ng-app : 앵귤러JS 애플리케이션이다.-->
+	<div ng-app="test_app">
+	
+		<a ui-sref="hi">main</a>
+		<a ui-sref="page1">page1</a>
+		<hr>
+		<ui-view></ui-view>
+	</div> 
+</body>
+</html>
