@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+<title>Insert title here</title>
+<script>
+	let app = angular.module("test_app", [])
+	
+	app.controller("controller1", function($scope){
+		
+		$scope.a1 = 0;
+		$scope.a2 = 0;
+		$scope.a3 = 0;
+		
+		// mouseenter()는 이벤트가 한 번만 실행
+		$scope.enter = function() {
+			$scope.box1 = $scope.a1++;
+		}
+		$scope.leave = function() {
+			$scope.box1 = "마우스가 나왔습니다.";
+		}
+		
+		// mouseover()는 이벤트가 하위 속성도 실행(여러 번 실행될 수 있음)
+		$scope.over = function() {
+			$scope.box2 = $scope.a2++;
+		}
+		$scope.out = function() {
+			$scope.box2 = "마우스가 나왔습니다."
+		}
+		
+		// mousemove()는 마우스가 움직일 때마다 함수 실행
+		$scope.move = function() {
+			$scope.box3 = $scope.a3++;
+		}
+		
+		// mousedown()는 마우스를 떼었을 때, mouseup()는 마우스를 눌렀을 때 함수 실행
+		$scope.down = function() {
+			$scope.box4 = "마우스를 눌렀습니다.";
+		}
+		$scope.up = function() {
+			$scope.box4 = "마우스를 떼었습니다.";
+		}
+		
+		// ng-click는 마우스 클릭했을 때, ng-dblclick는 마우스 더블클릭했을 때
+		$scope.click = function() {
+			$scope.box5 = "마우스를 클릭하였습니다.";
+		}
+		$scope.doubleclick = function() {
+			$scope.box5 = "마우스를 더블클릭하였습니다.";
+		}
+		
+		// ng-focus : input태그에서 포커스가 주어졌을 때 실행, ng-blur : input태그에서 포커스를 잃었을 때 실행
+		$scope.focus = function() {
+			$scope.box6 = "포커스가 주어졌습니다.";
+		}
+		$scope.blur = function() {
+			$scope.box6 = "포커스를 잃었습니다.";
+		}
+		
+		// ng-change : input태그의 값이 변경될 때마다 실행, ng-model : input태그의 값이 저장됨
+		$scope.change = function() {
+			$scope.box6 = "입력된 값이 변경되었습니다 : " + $scope.input1
+		}
+	})
+
+</script>
+<style>
+	.box {
+		width : 200px;
+		height : 200px;
+		border : 1px solid black;
+	}
+	.box2 {
+		width : 50%;
+		height : 50%;
+		border : 1px solid black;
+		margin : 25%
+	}
+
+</style>
+</head>
+<body>
+	<!-- ng-app : 앵귤러JS 애플리케이션이다.-->
+	<div ng-app="test_app" ng-controller="controller1">
+		<div class="box" ng-mouseenter="enter()" ng-mouseleave="leave()">
+			<div class="box2"></div>
+		</div>
+		<p>box1 : {{box1}}</p>
+		<hr>
+		<div class="box" ng-mouseover="over()" ng-mouseout="out()">
+			<div class="box2"></div>
+		</div>
+		<p>box2 : {{box2}}</p>
+		<hr>
+		<div class="box" ng-mousemove="move()"></div>
+		<p>box3 : {{box3}}</p>
+		<hr>
+		<div class="box" ng-mouseup="up()" ng-mousedown="down()"></div>
+		<p>box4 : {{box4}}</p>
+		<hr>
+		<div class="box" ng-click="click()" ng-dblclick="doubleclick()"></div>
+		<p>box5 : {{box5}}</p>
+		<hr>
+		<input type="text" ng-model="input1" ng-focus="focus()" ng-blur="blur()" ng-change="change()">
+		<p>box6 : {{box6}}</p>
+	</div> 
+</body>
+</html>

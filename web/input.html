@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+<title>Insert title here</title>
+<script>
+	let app = angular.module("test_app", [])
+
+	app.controller("controller1", function($scope){
+		$scope.input1 = "초기값";
+		
+		$scope.c1 = true;
+		$scope.c3 = true;
+		
+		$scope.r1 = "radio2";
+		
+		$scope.s1 = "select1";
+		
+		$scope.getData = function() {
+			$scope.result1 = $scope.input1
+			$scope.result2 = $scope.c1
+			$scope.result3 = $scope.c2
+			$scope.result4 = $scope.c3
+			$scope.result5 = $scope.r1
+			$scope.result6 = $scope.s1
+		}
+	})
+</script>
+</head>
+<body>
+	<!-- ng-app : 앵귤러JS 애플리케이션이다.-->
+	<div ng-app="test_app" ng-controller="controller1">
+		<input type="text" ng-model="input1">
+		<br>
+		<input type="checkbox" ng-model="c1">체크박스1<br>
+		<input type="checkbox" ng-model="c2">체크박스2<br>
+		<input type="checkbox" ng-model="c3">체크박스3<br>
+		
+		<input type="radio" ng-model="r1" value="radio1">라디오1<br>
+		<input type="radio" ng-model="r1" value="radio2">라디오2<br>
+		<input type="radio" ng-model="r1" value="radio3">라디오3<br>
+		
+		<select ng-model="s1">
+			<option value="select1">항목1</option>
+			<option value="select2">항목2</option>
+			<option value="select3">항목3</option>
+		</select>
+		<br>
+		
+		<button type="button" ng-click="getData()">데이터 가져오기</button>
+		<hr>
+		<p>input1 : {{input1}}</p>
+		<p> c1 : {{c1}}</p>
+		<p> c2 : {{c2}}</p>
+		<p> c3 : {{c3}}</p>
+		<!-- ng-switch : if/else나 switch와 같음 -->
+		<div ng-switch="c1">
+			<div ng-switch-when="true">
+				<p>체크박스1이 선택되었습니다.</p>
+			</div>
+			<div ng-switch-when="false">
+				<p>체크박스1이 선택 해제되었습니다.</p>
+			</div>
+		</div>
+		<p>r1 : {{r1}}</p>
+		<div ng-switch="r1">
+			<div ng-switch-when="radio1">
+				<p>라디오1이 선택되었습니다.</p>
+			</div>
+			<div ng-switch-when="radio2">
+				<p>라디오2이 선택되었습니다.</p>
+			</div>
+			<div ng-switch-when="radio3">
+				<p>라디오3이 선택되었습니다.</p>
+			</div>
+		</div>
+		<p>s1 : {{s1}}</p>
+		<div ng-switch="s1">
+			<div ng-switch-when="select1">
+				<p>셀렉트박스1이 선택되었습니다.</p>
+			</div>
+			<div ng-switch-when="select2">
+				<p>셀렉트박스2이 선택되었습니다.</p>
+			</div>
+			<div ng-switch-when="select3">
+				<p>셀렉트박스3이 선택되었습니다.</p>
+			</div>
+		</div>
+		<!-- input태그의 값이 하윙이면 실행 -->
+		<div ng-switch="input1">
+			<div ng-switch-when="하윙">하윙^^</div>
+		</div>
+		<hr>
+		<p>result1 : {{result1}}</p>
+		<p>result2 : {{result2}}</p>
+		<p>result3 : {{result3}}</p>
+		<p>result4 : {{result4}}</p>
+		<p>result5 : {{result5}}</p>
+		<p>result6 : {{result6}}</p>
+	</div> 
+</body>
+</html>
