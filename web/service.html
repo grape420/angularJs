@@ -42,14 +42,18 @@
 				$scope.result1 = response.data
 			})
 		}
+		
+		// 1초가 지난 후 함수 호출
 		$timeout(function(){
 			$scope.result2 = "timeout!!"
 		}, 1000)
 		
+		// 1초마다 한 번씩 함수 호출
 		$interval(function() {
 			$scope.result3 = new Date()
 		}, 1000)
 		
+		// myService 객체의 add, sub라는 함수를 호출함
 		$scope.result4 = myService.add(100, 200)
 		$scope.result5 = myService.sub(100, 200)
 	})
